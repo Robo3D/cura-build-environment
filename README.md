@@ -77,6 +77,14 @@ versions of Mac OS. The "env_osx.sh" will set it to 10.7 and ensure the
 right compiler is still used. It also add the relevant directories for
 OpenSSL installed through Brew.
 
+On newer versions of MacOS, the zlib headers cannot be found unless
+XCode Command Line Tools are installed first. To install those, please
+run the following first:
+
+```
+xcode-select --install
+```
+
 To build, run the following:
 
 ```
@@ -91,9 +99,9 @@ make
 ### Windows
 
 Building the environment on Windows requires both MinGW (version 4.9 or
-higher) and Visual C++ 2015. Visual C++ is required for building Python
-and MinGW for building the Cura Engine. In addition, Subversion is 
-required for building Python. Please make sure all required tools are 
+higher) and Visual C++ 2015 or Visual Studio 2017 with Windows 8.1 SDK.
+Visual C++ is required for building Python and MinGW for building the Cura Engine.
+In addition, Subversion is required for building Python. Please make sure all required tools are 
 accessible through your path.
 
 The `env_win32.bat` and `env_win64.bat` will make sure to set a few
@@ -103,12 +111,12 @@ environment variables that are required. Most importantly, they call the
 To build, run the following:
 
 ```
-cd $SOURCE_DIR
+cd %SOURCE_DIR%
 mkdir build
 cd build
 ..\env_win64.bat
-cmake .. -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_BUILD_TYPE=Release \
-            -G "NMake Makefiles"
+cmake .. -DCMAKE_INSTALL_PREFIX=%INSTALL_DIR% -DCMAKE_BUILD_TYPE=Release ^
+         -G "NMake Makefiles"
 nmake
 ```
 
