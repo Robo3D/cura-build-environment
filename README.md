@@ -24,6 +24,14 @@ It will download and build the following projects:
 - python-utils
 - Numpy-STL
 
+To build these dependencies of Cura, the following software needs to be installed on your system:
+
+- **CMake** Once CMake is installed make sure it is available on your `%PATH%`. Check this by running `cmake --version` in the Windows console. (http://www.cmake.org/)
+- **git** - The `git` command should be available on your `%PATH%` or `$PATH`, depending which OS you are using. (https://git-scm.com/)
+  - (WINDOWS) Make sure that the `cmd` directory in the git for windows installation directory is on the `%PATH%` and *not* its `bin` directory, otherwise mingw32 will complain about `sh.exe` being on the path. (https://git-for-windows.github.io/)
+  - (LINUX) Check your package management system for the term `git`. You should be able to find easily there.
+- **Subversion aka "svn"** - To fetch some sources
+
 In addition, there is an option "INCLUDE_DEVEL", which, when set to ON, will
 also download and install a set of development tools. The following projects
 are currently installed as development tools:
@@ -123,3 +131,13 @@ nmake
 Note: Using the NMake Makefiles generator is important, since the normal
 Visual Studio generator does not work well in combination with some of
 the build systems of the sub-projects that are built.
+
+
+### Docker
+Building the environment in Docker is very easy using the Dockerfile in this repository.
+We handle all cloning and compiling in the Dockerfile, so no dependencies are needed on the host OS.
+The resulting image can be used as a `FROM` for building Cura itself.
+
+```bash
+docker build -t ultimaker/cura-build-environment .
+```
