@@ -20,9 +20,9 @@ for(int i = 0; i < nodes.size(); ++i) {
                 // Clean up the previous installation
                 try {
                     if(isUnix()) {
-                        sh "rm -r /opt/ultimaker/cura-build-environment/${env.BRANCH_NAME}"
+                        sh "rm -r /opt/robo3d/cura-build-environment/${env.BRANCH_NAME}"
                     } else {
-                        bat "rmdir /S /Q C:\\ultimaker\\cura-build-environment\\${env.BRANCH_NAME}"
+                        bat "rmdir /S /Q C:\\robo3d\\cura-build-environment\\${env.BRANCH_NAME}"
                     }
                 } catch(e) {
                     // Ignore
@@ -35,7 +35,7 @@ for(int i = 0; i < nodes.size(); ++i) {
                 if(isUnix()) {
                     dir('build') {
                         // Build and install the new environment
-                        sh "cmake .. -DCMAKE_INSTALL_PREFIX=/opt/ultimaker/cura-build-environment/${env.BRANCH_NAME} -DCMAKE_BUILD_TYPE=Release -DINCLUDE_DEVEL=ON"
+                        sh "cmake .. -DCMAKE_INSTALL_PREFIX=/opt/robo3d/cura-build-environment/${env.BRANCH_NAME} -DCMAKE_BUILD_TYPE=Release -DINCLUDE_DEVEL=ON"
                         sh "make"
                     }
                 } else {

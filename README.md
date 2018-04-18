@@ -109,7 +109,7 @@ make
 Building the environment on Windows requires both MinGW (version 4.9 or
 higher) and Visual C++ 2015 or Visual Studio 2017 with Windows 8.1 SDK.
 Visual C++ is required for building Python and MinGW for building the Cura Engine.
-In addition, Subversion is required for building Python. Please make sure all required tools are 
+In addition, Subversion is required for building Python. Please make sure all required tools are
 accessible through your path.
 
 The `env_win32.bat` and `env_win64.bat` will make sure to set a few
@@ -139,5 +139,5 @@ We handle all cloning and compiling in the Dockerfile, so no dependencies are ne
 The resulting image can be used as a `FROM` for building Cura itself.
 
 ```bash
-docker build -t ultimaker/cura-build-environment .
+docker build -t robo3d/cura-build-environment .
 ```
