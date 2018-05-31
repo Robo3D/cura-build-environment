@@ -7,6 +7,10 @@ if(BUILD_OS_OSX)
     # See http://bugs.python.org/issue21381
     # The interpreter crashes when MACOSX_DEPLOYMENT_TARGET=10.7 due to the increased stack size.
     set(python_patch_command sed -i".bak" "9240,9240d" <SOURCE_DIR>/configure)
+    # Since OS X 10.11, System Integrity Protection (SIP) is introduced to enhance security. It clears
+    # DYLD_LIBRARY_PATH for all sub-processes so now setting DYLD_LIBRARY_PATH won't work. We now compile
+    # Python by linking to the OS X framework to avoid this problem.
+    set(python_configure_command ./configure --prefix=${CMAKE_INSTALL_PREFIX} --enable-framework --enable-optimizations --enable-ipv6 --with-threads --without-pymalloc)
     # OS X 10.11 removed OpenSSL. Brew now refuses to link so we need to manually tell Python's build system
     # to use the right linker flags.
     set(python_configure_command CPPFLAGS=-I/usr/local/opt/openssl/include LDFLAGS=-L/usr/local/opt/openssl/lib PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig ${python_configure_command})
