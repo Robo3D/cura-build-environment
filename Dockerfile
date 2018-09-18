@@ -53,14 +53,14 @@ RUN chmod -v +x /.vnc/xstartup
 # Set up the build environment
 RUN mkdir $CURA_BENV_GIT_DIR
 WORKDIR $CURA_BENV_GIT_DIR
-COPY ./* ./
+COPY . ./
 #RUN git clone https://github.com/Robo3D/cura-build-environment 
 #&& rm $CURA_BENV_GIT_DIR/cura-build-environment/projects/appimagekit.cmake
 
 # Build the build environment
-RUN mkdir $CURA_BENV_GIT_DIR/cura-build-environment/build
-WORKDIR $CURA_BENV_GIT_DIR/cura-build-environment/build
+RUN mkdir $CURA_BENV_GIT_DIR/build
+WORKDIR $CURA_BENV_GIT_DIR/build
 RUN cmake3 .. -DCMAKE_BUILD_TYPE=$CURA_BENV_BUILD_TYPE
-RUN make
+RUN make -j4
 
 WORKDIR /
