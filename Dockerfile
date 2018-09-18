@@ -56,7 +56,7 @@ RUN chmod -v +x /.vnc/xstartup
 # Set up the build environment
 RUN mkdir $CURA_BENV_GIT_DIR
 WORKDIR $CURA_BENV_GIT_DIR
-RUN git clone https://github.com/Robo3D/cura-build-environment
+RUN git clone https://github.com/Ultimaker/cura-build-environment
 
 # We remove appImageKit as we don't need it and depends on too many things
 RUN rm $CURA_BENV_GIT_DIR/cura-build-environment/projects/appimagekit.cmake
