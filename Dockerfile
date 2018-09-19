@@ -34,7 +34,8 @@ RUN yum update -y && yum install -y \
     fuse \
     fuse-devel \
     glib-devel \
-    glib2-devel
+    glib2-devel \
+    google-noto-fonts-common*
 
 
 # Enable devtools-3
