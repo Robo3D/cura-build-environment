@@ -29,14 +29,39 @@ RUN yum update -y && yum install -y \
     xterm \
     xdotool \
     libX11-devel \
+    xcb-util \
     xz \
+    fontconfig-devel \
+    fontconfig \
     zlib-devel \
     fuse \
     fuse-devel \
     glib-devel \
     glib2-devel \
-    google-noto-fonts-common*
-
+    glibc-core \
+    google-noto-fonts-common* \
+    libpng12 \
+    libpng12-devel \
+    xcb-util-renderutil \
+    xcb-util-renderutil-devel \
+    libxcb-devel \
+    xcb-util \
+    xcb-util-devel \
+    xcb-util-cursor \
+    xcb-util-cursor-devel \
+    xcb-util-image-devel \
+    libXi \
+    libXi-devel \
+    libXrender \
+    libXrender-devel \
+    libxcb \
+    xcb-util-image \
+    libxkbcommon-x11 \
+    libxkbcommon-x11-devel \
+    xorg-x11-xkb-utils-devel \
+    xorg-x11-xkb-utils \
+    libXfixes-devel \
+    libXfixes 
 
 # Enable devtools-3
 ENV PATH=${PATH}:/opt/rh/devtoolset-3/root/usr/bin
@@ -62,6 +87,6 @@ COPY . ./
 RUN mkdir $CURA_BENV_GIT_DIR/build
 WORKDIR $CURA_BENV_GIT_DIR/build
 RUN cmake3 .. -DCMAKE_BUILD_TYPE=$CURA_BENV_BUILD_TYPE
-RUN make -j4
+RUN make 
 
 WORKDIR /

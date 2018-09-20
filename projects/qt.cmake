@@ -8,6 +8,9 @@ if(BUILD_OS_WINDOWS)
     return()
 endif()
 
+# One liner 
+#./configure -top-level -release -prefix /usr/local -archdatadir /usr/local/lib -datadir /usr/local/share -opensource -confirm-license -nomake examples -nomake tests -nomake tools -no-cups -no-sql-db2 -no-sql-ibase -no-sql-mysql -no-sql-oci -no-sql-odbc -no-sql-psql -no-sql-sqlite -no-sql-sqlite2 -no-sql-tds -skip qtconnectivity -skip qtdoc -skip qtlocation -skip qtmultimedia -skip qtscript -skip qtsensors -skip qtwebchannel -skip qtwebengine -skip qtwebsockets -skip qtandroidextras -skip qtactiveqt -skip qttools -skip qtxmlpatterns -skip qt3d -skip qtcanvas3d -skip qtserialport -skip qtwayland -skip qtgamepad -skip qtscxml -no-gtk -no-rpath -qt-xcb
+
 set(qt_options
     -release
     -prefix ${CMAKE_INSTALL_PREFIX}
