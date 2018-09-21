@@ -61,7 +61,8 @@ RUN yum update -y && yum install -y \
     xorg-x11-xkb-utils-devel \
     xorg-x11-xkb-utils \
     libXfixes-devel \
-    libXfixes 
+    libXfixes \
+    wget
 
 # Enable devtools-3
 ENV PATH=${PATH}:/opt/rh/devtoolset-3/root/usr/bin
@@ -86,7 +87,7 @@ COPY . ./
 # Build the build environment
 RUN mkdir $CURA_BENV_GIT_DIR/build
 WORKDIR $CURA_BENV_GIT_DIR/build
-RUN cmake3 .. -DCMAKE_BUILD_TYPE=$CURA_BENV_BUILD_TYPE
-RUN make 
+RUN cmake3 .. -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=$CURA_BENV_BUILD_TYPE
+RUN make -j4
 
 WORKDIR /

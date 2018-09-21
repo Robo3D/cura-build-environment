@@ -1,15 +1,24 @@
-#set(qt_url http://software.ultimaker.com/cura-binary-dependencies/qt-everywhere-src-5.10.1.tar.xz)
-set(qt_url https://download.qt.io/archive/qt/5.10/5.10.1/single/qt-everywhere-src-5.10.1.tar.xz)
-set(qt_md5 7e167b9617e7bd64012daaacb85477af)
-
 if(BUILD_OS_WINDOWS)
     # For some as of yet unknown reason, building Qt on Windows fails because it does not create moc targets.
     # Due to that we install the PyQt wheel into the built Python manually.
     return()
 endif()
 
-# One liner 
-#./configure -top-level -release -prefix /usr/local -archdatadir /usr/local/lib -datadir /usr/local/share -opensource -confirm-license -nomake examples -nomake tests -nomake tools -no-cups -no-sql-db2 -no-sql-ibase -no-sql-mysql -no-sql-oci -no-sql-odbc -no-sql-psql -no-sql-sqlite -no-sql-sqlite2 -no-sql-tds -skip qtconnectivity -skip qtdoc -skip qtlocation -skip qtmultimedia -skip qtscript -skip qtsensors -skip qtwebchannel -skip qtwebengine -skip qtwebsockets -skip qtandroidextras -skip qtactiveqt -skip qttools -skip qtxmlpatterns -skip qt3d -skip qtcanvas3d -skip qtserialport -skip qtwayland -skip qtgamepad -skip qtscxml -no-gtk -no-rpath -qt-xcb
+if (BUILD_OS_LINUX)
+    ExternalProject_Add(Qt
+        GIT_REPOSITORY https://github.com/Robo3D/Auto_Install_QT.git
+        GIT_TAG master 
+        CONFIGURE_COMMAND ""
+        BUILD_COMMAND ./configure_QT.sh "${QT_INSTALL_LOCATION}"
+        INSTALL_COMMAND ""
+        BUILD_IN_SOURCE 1
+    )
+    return()
+endif()
+
+#set(qt_url http://software.ultimaker.com/cura-binary-dependencies/qt-everywhere-src-5.10.1.tar.xz)
+set(qt_url https://download.qt.io/archive/qt/5.10/5.10.1/single/qt-everywhere-src-5.10.1.tar.xz)
+set(qt_md5 7e167b9617e7bd64012daaacb85477af)
 
 set(qt_options
     -release

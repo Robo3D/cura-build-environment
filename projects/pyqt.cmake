@@ -12,7 +12,7 @@ else()
         "LD_LIBRARY_PATH=${CMAKE_INSTALL_PREFIX}/lib"
         ${PYTHON_EXECUTABLE} configure.py
         --sysroot ${CMAKE_INSTALL_PREFIX}
-        --qmake ${CMAKE_INSTALL_PREFIX}/bin/qmake
+        --qmake ${QT_INSTALL_LOCATION}5.10.1/gcc_64/bin/qmake
         --sip ${CMAKE_INSTALL_PREFIX}/bin/sip
         --confirm-license
     )

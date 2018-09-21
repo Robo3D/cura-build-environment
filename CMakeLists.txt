@@ -27,8 +27,17 @@ else()
     set(PYTHON_EXECUTABLE ${CMAKE_INSTALL_PREFIX}/bin/python3)
 endif()
 
+set(QT_INSTALL_LOCATION ${CMAKE_INSTALL_PREFIX}/Qt/)
+file(MAKE_DIRECTORY ${QT_INSTALL_LOCATION})
+
 # Build projects step
 add_custom_target(projects ALL COMMENT "Building Projects...")
+
+# include(projects/python.cmake)
+# include(projects/qt.cmake)
+# include(projects/pyqt.cmake)
+# include(projects/sip.cmake)
+
 
 file(GLOB _projects projects/*.cmake)
 foreach(_project ${_projects})
