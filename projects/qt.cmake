@@ -4,18 +4,6 @@ if(BUILD_OS_WINDOWS)
     return()
 endif()
 
-if (BUILD_OS_LINUX)
-    ExternalProject_Add(Qt
-        GIT_REPOSITORY https://github.com/Robo3D/Auto_Install_QT.git
-        GIT_TAG master 
-        CONFIGURE_COMMAND ""
-        BUILD_COMMAND ./configure_QT.sh "${QT_INSTALL_LOCATION}"
-        INSTALL_COMMAND ""
-        BUILD_IN_SOURCE 1
-    )
-    return()
-endif()
-
 #set(qt_url http://software.ultimaker.com/cura-binary-dependencies/qt-everywhere-src-5.10.1.tar.xz)
 set(qt_url https://download.qt.io/archive/qt/5.10/5.10.1/single/qt-everywhere-src-5.10.1.tar.xz)
 set(qt_md5 7e167b9617e7bd64012daaacb85477af)
@@ -59,6 +47,7 @@ set(qt_options
     -skip qtwayland
     -skip qtgamepad
     -skip qtscxml
+    -openssl-linked
 )
 
 if(BUILD_OS_OSX)
